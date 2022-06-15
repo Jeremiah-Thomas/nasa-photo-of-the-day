@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Card from "./components/Card";
+import DateEntry from "./components/DateEntry";
 import "./App.css";
 
 function App() {
+  const today = new Date();
+  const [queryDate, setQueryDate] = useState(
+    `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${String(today.getDate()).padStart(2, "0")}`
+  );
+
+  const [data, setData] = useState({});
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${queryDate}`
+      )
+      .then((res) => {
+        const result = res.data;
+        setData(result);
+      })
+      .catch((err) => console.error(err));
+  }, [queryDate]);
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
+      <DateEntry setDate={setQueryDate} />
+      <Card data={data} />
     </div>
   );
 }
