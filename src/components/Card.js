@@ -7,7 +7,7 @@ const Card = (props) => {
   }
   return (
     <div className="card">
-      <img src={props.data.hdurl}></img>
+      <img src={props.data.hdurl} alt="nasa image"></img>
       <p className="copyright">Copyright: {props.data.copyright}</p>
       <h3 className="date">Date: {props.data.date}</h3>
       <p className="explanation">{props.data.explanation}</p>
