@@ -4,6 +4,8 @@ import Card from "./components/Card";
 import DateEntry from "./components/DateEntry";
 import "./App.css";
 
+const API_KEY = "GzZIdinbKmJk4YPnDMgiuo8FK9I9PhkywdBpKuwP";
+
 function App() {
   const today = new Date();
   const [queryDate, setQueryDate] = useState(
@@ -17,7 +19,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${queryDate}`
+        `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${queryDate}`
       )
       .then((res) => {
         const result = res.data;
