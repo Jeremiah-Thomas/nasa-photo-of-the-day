@@ -1,10 +1,17 @@
 import React from "react";
-import "../styles/date-entry.css";
+import styled from "styled-components";
+
+const StyledDateEntry = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+  justify-content: center;
+`;
 
 const DateEntry = (props) => {
   let inputDate;
   return (
-    <div className="date-entry">
+    <StyledDateEntry>
       <input
         type="text"
         placeholder="YYYY-MM-DD"
@@ -32,7 +39,7 @@ const DateEntry = (props) => {
       >
         Back To Today
       </button>
-    </div>
+    </StyledDateEntry>
   );
 };
 
